@@ -90,17 +90,22 @@ opacity: 1;
 .left-center { top: 50%; left: 97%; transform: translateY(-50%); }
 .center { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-.circle.empty {
-    animation: blink 1s infinite alternate;
+ /* Blinking border animation */
+ @keyframes blink {
+    0% { border-color: transparent; }
+    50% { border-color: inherit; }
+    100% { border-color: transparent; }
 }
 
-@keyframes blink {
-    0% {
-        background-color: white;
-    }
-    100% {
-        background-color: yellow; /* Change this to the color you want for highlighting */
-    }
+/* Blinking classes for red and blue */
+.blink-red {
+    border-color: red;
+    animation: blink 1s infinite;
+}
+
+.blink-blue {
+    border-color: blue;
+    animation: blink 1s infinite;
 }
 
 #restartBtn {           
