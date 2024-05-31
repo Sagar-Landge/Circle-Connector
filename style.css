@@ -169,8 +169,7 @@
  .button-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
-         font-weight:bold;
+            margin-top: 20px;         
         }
 /* Restart button styling */
 #restartBtn {   
