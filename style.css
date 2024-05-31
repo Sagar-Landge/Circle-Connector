@@ -170,7 +170,11 @@
             display: flex;
             justify-content: center;
             margin-top: 20px;
+<<<<<<< HEAD
             
+=======
+         font-weight:bold;
+>>>>>>> 4301e4799bdf5f3cdeae74c6cb7ff78a54f243b1
         }
 /* Restart button styling */
 #restartBtn {   
