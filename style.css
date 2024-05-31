@@ -20,7 +20,7 @@
         h1 {
             margin-bottom: 30px;
             font-size: 2em;
-            background: conic-gradient(from -80deg, #ee0979, #ff6a00, red, yellow, gray, blue, rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
+            background: conic-gradient(from -80deg, #ee0979, red, yellow, gray, rgb(152, 152, 230), rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
             border-radius: 10px;
             color: white;
             opacity: 1;
@@ -36,7 +36,7 @@
             height: 0;
             padding-bottom: 100%;
             border: 2px solid black;
-            background: repeating-radial-gradient(circle, #09eec8e7, #fffb00 15%);
+            background: repeating-radial-gradient(circle, #09eec8e7, #fffb00,rgb(216, 230, 109) 15%);
         }
 
         /* Line styling */
@@ -165,10 +165,15 @@
             animation: blink 1s infinite;
         }
 
-           /* Restart button styling */
-#restartBtn {
-   
-    background: conic-gradient(from 40deg, #ff6a00, gray, rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
+ /* Button container styling */
+ .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+/* Restart button styling */
+#restartBtn {   
+    background: conic-gradient(from 40deg, #ff6a00 , violet);
     border-radius: 10px;
     color: white;
     opacity: 1;
@@ -177,22 +182,23 @@
 }
 
 /* Check winner button styling */
-#checkWinnerBtn {
-   
-    background: conic-gradient(from 40deg, #ff6a00, gray, rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
+#checkWinnerBtn {   
+    background: conic-gradient(from -40deg, rgb(162, 246, 212),rgba(218, 20, 20, 0.89));
     border-radius: 10px;
     color: white;
     opacity: 1;
     cursor: pointer;
     padding: 10px 20px;
 }
-
-/* Button container styling */
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+#checkWinnerBtn:hover {
+    transform: translateY(-5px);
+    color: black;
 }
+#restartBtn:hover {
+    transform: translateY(-5px);
+    color: black;
+}
+
         /* Media query for smaller screens */
         @media (max-width: 600px) {
             h1 {
