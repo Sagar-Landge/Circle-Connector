@@ -165,18 +165,34 @@
             animation: blink 1s infinite;
         }
 
-        /* Restart button styling */
-        #restartBtn {
-            margin-bottom: 3px;
-            margin-top: 60px;
-            background: conic-gradient(from 40deg, #ff6a00, gray, rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
-            border-radius: 10px;
-            color: white;
-            opacity: 1;
-            cursor: pointer;
-            padding: 10px 20px;
-        }
+           /* Restart button styling */
+#restartBtn {
+   
+    background: conic-gradient(from 40deg, #ff6a00, gray, rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
+    border-radius: 10px;
+    color: white;
+    opacity: 1;
+    cursor: pointer;
+    padding: 10px 20px;
+}
 
+/* Check winner button styling */
+#checkWinnerBtn {
+   
+    background: conic-gradient(from 40deg, #ff6a00, gray, rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
+    border-radius: 10px;
+    color: white;
+    opacity: 1;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+/* Button container styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
         /* Media query for smaller screens */
         @media (max-width: 600px) {
             h1 {
