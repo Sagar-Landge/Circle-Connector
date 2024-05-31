@@ -170,6 +170,7 @@
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            
         }
 /* Restart button styling */
 #restartBtn {   
@@ -179,6 +180,7 @@
     opacity: 1;
     cursor: pointer;
     padding: 10px 20px;
+     font-weight: bold;
 }
 
 /* Check winner button styling */
@@ -189,6 +191,7 @@
     opacity: 1;
     cursor: pointer;
     padding: 10px 20px;
+    font-weight: bold;
 }
 #checkWinnerBtn:hover {
     transform: translateY(-5px);
