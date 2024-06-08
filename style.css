@@ -1,298 +1,298 @@
-        /* General body styling */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            background: linear-gradient(90deg, #eda6f5, #eafb04);
-        }
+  /* General body styling */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    background: linear-gradient(90deg, #eda6f5, #eafb04);
+}
 
-        /* Container styling */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* Container styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        /* Heading styling */
-        h1 {
-            margin-bottom: 30px;
-            font-size: 2em;
-            background: conic-gradient(from -80deg, #ee0979, red, yellow, rgb(191, 227, 155), rgb(118, 251, 140), rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
-            border-radius: 10px;
-            color: white;
-            opacity: 1;
-            padding: 10px;
-            text-align: center;
-        }
-
-        /* Square styling */
-        .square {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            height: 0;
-            padding-bottom: 100%;
-            border: 2px solid black;
-            background: repeating-radial-gradient(circle, #09eec8e7, #fffb00,rgb(216, 230, 109) 15%);
-        }
-
-        /* Line styling */
-        .line {
-            position: absolute;
-            background-color: black;
-        }
-
-        /* Vertical line styling */
-        .vertical {
-            width: 2px;
-            height: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Horizontal line styling */
-        .horizontal {
-            width: 100%;
-            height: 2px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        /* Diagonal line 1 styling */
-        .diagonal1 {
-            width: 2px;
-            height: 141.42%; /* Length of diagonal = sqrt(2) * 100% */
-            top: -20.5%;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            transform-origin: center center;
-        }
-
-        /* Diagonal line 2 styling */
-        .diagonal2 {
-            width: 2px;
-            height: 141.42%; /* Length of diagonal = sqrt(2) * 100% */
-            top: -20.5%;
-            left: 50%;
-            transform: translateX(-50%) rotate(-45deg);
-            transform-origin: center center;
-        }
-
-        /* Circle styling */
-        .circle {
-            position: absolute;
-            width: 7.5%;
-            height: 7.5%;
-            background-color: white;
-            border-radius: 50%;
-            border: 2px solid;
-            cursor: pointer;
-        }
-
-        /* Positioning circles */
-        .top-left {
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-        }
-
-        .top-right {
-            top: 0;
-            right: 0;
-            transform: translate(50%, -50%);
-        }
-
-        .bottom-left {
-            bottom: 0;
-            left: 0;
-            transform: translate(-50%, 50%);
-        }
-
-        .bottom-right {
-            bottom: 0;
-            right: 0;
-            transform: translate(50%, 50%);
-        }
-
-        .top-center {
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .right-center {
-            top: 50%;
-            right: 0;
-            transform: translate(50%, -50%);
-        }
-
-        .bottom-center {
-            bottom: 0;
-            left: 50%;
-            transform: translate(-50%, 50%);
-        }
-
-        .left-center {
-            top: 50%;
-            left: 0;
-            transform: translate(-50%, -50%);
-        }
-
-        .center {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Blinking border animation */
-        @keyframes blink {
-            0% { border-color: transparent; }
-            50% { border-color: inherit; }
-            100% { border-color: transparent; }
-        }
-
-        /* Blinking classes for red and blue */
-        .blink-red {
-            border-color: red;
-            animation: blink 1s infinite;
-        }
-
-        .blink-blue {
-            border-color: blue;
-            animation: blink 1s infinite;
-        }
-
-      /* Restart button styling */
-#restartBtn {   
-    background: conic-gradient(from 40deg, #ff6a00 , violet);
+/* Heading styling */
+h1 {
+    margin-bottom: 30px;
+    font-size: 2em;
+    background: conic-gradient(from -80deg, #ee0979, red, yellow, rgb(191, 227, 155), rgb(118, 251, 140), rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
     border-radius: 10px;
     color: white;
     opacity: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Square styling */
+.square {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 0;
+    padding-bottom: 100%;
+    border: 2px solid black;
+    background: repeating-radial-gradient(circle, #09eec8e7, #fffb00,rgb(216, 230, 109) 15%);
+}
+
+/* Line styling */
+.line {
+    position: absolute;
+    background-color: black;
+}
+
+/* Vertical line styling */
+.vertical {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Horizontal line styling */
+.horizontal {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Diagonal line 1 styling */
+.diagonal1 {
+    width: 2px;
+    height: 141.42%; /* Length of diagonal = sqrt(2) * 100% */
+    top: -20.5%;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    transform-origin: center center;
+}
+
+/* Diagonal line 2 styling */
+.diagonal2 {
+    width: 2px;
+    height: 141.42%; /* Length of diagonal = sqrt(2) * 100% */
+    top: -20.5%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    transform-origin: center center;
+}
+
+/* Circle styling */
+.circle {
+    position: absolute;
+    width: 7.5%;
+    height: 7.5%;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid;
     cursor: pointer;
-    padding: 10px 20px;
+}
+
+/* Positioning circles */
+.top-left {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, 50%);
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: translate(50%, 50%);
+}
+
+.top-center {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.right-center {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.left-center {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Blinking border animation */
+@keyframes blink {
+    0% { border-color: transparent; }
+    50% { border-color: inherit; }
+    100% { border-color: transparent; }
+}
+
+/* Blinking classes for red and blue */
+.blink-red {
+    border-color: red;
+    animation: blink 1s infinite;
+}
+
+.blink-blue {
+    border-color: blue;
+    animation: blink 1s infinite;
+}
+
+/* Restart button styling */
+#restartBtn {   
+background: conic-gradient(from 40deg, #ff6a00 , violet);
+border-radius: 10px;
+color: white;
+opacity: 1;
+cursor: pointer;
+padding: 10px 20px;
 }
 
 
 #restartBtn:hover {
-    transform: translateY(-5px);
-    color: black;
+transform: translateY(-5px);
+color: black;
 }
 
 /* Button container styling */
 .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+display: flex;
+justify-content: center;
+margin-top: 20px;
 }
 
-        /* Media query for smaller screens */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-            }
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
 
-            .square {
-                max-width: 300px;
-            }
+    .square {
+        max-width: 300px;
+    }
 
-            .circle {
-                width: 10%;
-                height: 10%;
-            }
+    .circle {
+        width: 10%;
+        height: 10%;
+    }
 
-        }
+}
 
 
-        @media (max-width: 400px) {
-            h1 {
-                font-size: 1.2em;
-                margin-bottom: 15px;
-            }
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
 
-            .square {
-                max-width: 250px;
-            }
+    .square {
+        max-width: 250px;
+    }
 
-            .circle {
-                width: 12.5%;
-                height: 12.5%;
-            }
+    .circle {
+        width: 12.5%;
+        height: 12.5%;
+    }
 
-        }
-        .occupied {
-            pointer-events: none;
-        }
-        .blink-red {
-            animation: blink-red 1s infinite;
-        }
-        .blink-blue {
-            animation: blink-blue 1s infinite;
-        }
-        @keyframes blink-red {
-            0%, 100% { background-color: red; }
-            50% { background-color: white; }
-        }
-        @keyframes blink-blue {
-            0%, 100% { background-color: blue; }
-            50% { background-color: white; }
-        }
+}
+.occupied {
+    pointer-events: none;
+}
+.blink-red {
+    animation: blink-red 1s infinite;
+}
+.blink-blue {
+    animation: blink-blue 1s infinite;
+}
+@keyframes blink-red {
+    0%, 100% { background-color: red; }
+    50% { background-color: white; }
+}
+@keyframes blink-blue {
+    0%, 100% { background-color: blue; }
+    50% { background-color: white; }
+}
 
-        #game-selection {
-    text-align: center;
-    margin-top: -50px;
+#game-selection {
+text-align: center;
+margin-top: -50px;
 }
 
 #game-selection h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+font-size: 24px;
+margin-bottom: 10px;
 }
 
 #game-selection p {
-    font-size: 25px;
-    margin-top: 150px;
+font-size: 25px;
+margin-top: 150px;
 }
 
 #playWithFriendBtn {
-    font-size: 18px;
-    padding: 10px 32px;
-    margin: 50px 10px;
-    background: conic-gradient(from -40deg, rgb(218, 202, 62),rgba(216, 79, 193, 0.89));
-    font-weight: bold;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    
+font-size: 18px;
+padding: 10px 32px;
+margin: 50px 10px;
+background: conic-gradient(from -40deg, rgb(218, 202, 62),rgba(216, 79, 193, 0.89));
+font-weight: bold;
+color: #fff;
+border: none;
+cursor: pointer;
+border-radius: 20px;
+
 }
 #playWithSystemBtn{
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 0 10px;
-    background: conic-gradient(from -40deg, rgb(162, 246, 212),rgba(218, 20, 20, 0.89));
-    font-weight: bold;    
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
+font-size: 18px;
+padding: 10px 20px;
+margin: 0 10px;
+background: conic-gradient(from -40deg, rgb(162, 246, 212),rgba(218, 20, 20, 0.89));
+font-weight: bold;    
+color: #fff;
+border: none;
+cursor: pointer;
+border-radius: 20px;
 }
 
 #playWithSystemBtn:hover {
-    background: repeating-radial-gradient(circle, #4ed5f0e7, #ff7700,rgb(225, 15, 244) 15%);
+background: repeating-radial-gradient(circle, #4ed5f0e7, #ff7700,rgb(225, 15, 244) 15%);
 }
 #playWithFriendBtn:hover {
-    background: repeating-radial-gradient(circle, #ebfc00e7, #b7ddcb,rgb(236, 20, 20) 15%);
+background: repeating-radial-gradient(circle, #ebfc00e7, #b7ddcb,rgb(236, 20, 20) 15%);
 }
 #playerTurnInfo
 {
-    color: white;
-    border: 2px solid black;
-    border-radius:20px;
-    margin-bottom: 30px;
-    margin-left: 50px;
-    display: inline-block; /* Change display to inline-block */
-    padding: 5px 10px; /* Adjust padding according to your preference */
+color: white;
+border: 2px solid black;
+border-radius:20px;
+margin-bottom: 30px;
+margin-left: 50px;
+display: inline-block; /* Change display to inline-block */
+padding: 5px 10px; /* Adjust padding according to your preference */
 }
