@@ -20,7 +20,7 @@
         h1 {
             margin-bottom: 30px;
             font-size: 2em;
-            background: conic-gradient(from -80deg, #ee0979, red, yellow, gray, rgb(152, 152, 230), rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
+            background: conic-gradient(from -80deg, #ee0979, red, yellow, rgb(191, 227, 155), rgb(118, 251, 140), rgb(229, 239, 45), rgba(119, 233, 186, 0.89), violet);
             border-radius: 10px;
             color: white;
             opacity: 1;
@@ -165,13 +165,7 @@
             animation: blink 1s infinite;
         }
 
- /* Button container styling */
- .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;         
-        }
-/* Restart button styling */
+      /* Restart button styling */
 #restartBtn {   
     background: conic-gradient(from 40deg, #ff6a00 , violet);
     border-radius: 10px;
@@ -179,26 +173,19 @@
     opacity: 1;
     cursor: pointer;
     padding: 10px 20px;
-     font-weight: bold;
 }
 
-/* Check winner button styling */
-#checkWinnerBtn {   
-    background: conic-gradient(from -40deg, rgb(162, 246, 212),rgba(218, 20, 20, 0.89));
-    border-radius: 10px;
-    color: white;
-    opacity: 1;
-    cursor: pointer;
-    padding: 10px 20px;
-    font-weight: bold;
-}
-#checkWinnerBtn:hover {
-    transform: translateY(-5px);
-    color: black;
-}
+
 #restartBtn:hover {
     transform: translateY(-5px);
     color: black;
+}
+
+/* Button container styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
         /* Media query for smaller screens */
@@ -216,7 +203,9 @@
                 width: 10%;
                 height: 10%;
             }
+
         }
+
 
         @media (max-width: 400px) {
             h1 {
@@ -232,16 +221,78 @@
                 width: 12.5%;
                 height: 12.5%;
             }
+
         }
-          /* Player Information Styling */
-.player-info {
+        .occupied {
+            pointer-events: none;
+        }
+        .blink-red {
+            animation: blink-red 1s infinite;
+        }
+        .blink-blue {
+            animation: blink-blue 1s infinite;
+        }
+        @keyframes blink-red {
+            0%, 100% { background-color: red; }
+            50% { background-color: white; }
+        }
+        @keyframes blink-blue {
+            0%, 100% { background-color: blue; }
+            50% { background-color: white; }
+        }
+
+        #game-selection {
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: -50px;
 }
 
-.player-info p {
-    margin: 5px 0;
-    font-size: 1.2em;
-    color: white;
+#game-selection h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#game-selection p {
+    font-size: 25px;
+    margin-top: 150px;
+}
+
+#playWithFriendBtn {
+    font-size: 18px;
+    padding: 10px 32px;
+    margin: 50px 10px;
+    background: conic-gradient(from -40deg, rgb(218, 202, 62),rgba(216, 79, 193, 0.89));
     font-weight: bold;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    
+}
+#playWithSystemBtn{
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background: conic-gradient(from -40deg, rgb(162, 246, 212),rgba(218, 20, 20, 0.89));
+    font-weight: bold;    
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+#playWithSystemBtn:hover {
+    background: repeating-radial-gradient(circle, #4ed5f0e7, #ff7700,rgb(225, 15, 244) 15%);
+}
+#playWithFriendBtn:hover {
+    background: repeating-radial-gradient(circle, #ebfc00e7, #b7ddcb,rgb(236, 20, 20) 15%);
+}
+#playerTurnInfo
+{
+    color: white;
+    border: 2px solid black;
+    border-radius:20px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    display: inline-block; /* Change display to inline-block */
+    padding: 5px 10px; /* Adjust padding according to your preference */
 }

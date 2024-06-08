@@ -4,6 +4,8 @@ const playerColors = { 1: 'red', 2: 'blue' };
 const playerMoves = { 1: 0, 2: 0 };
 const maxMoves = 3;
 let selectedCircle = null; // Keep track of the selected circle for moving
+let isPlayingWithSystem = false; // Flag to check if playing with the system
+let systemPreviousMove = null; // Track the previous move of the system player
 
 // Select all circle elements
 const circles = document.querySelectorAll('.circle');
@@ -38,6 +40,35 @@ circles.forEach(circle => {
     circle.addEventListener('click', handleCircleClick);
 });
 
+// Elements
+const gameSelection = document.getElementById('game-selection');
+const gameContainer = document.getElementById('game-container');
+const playerTurnInfo = document.getElementById('playerTurnInfo');
+const restartBtn = document.getElementById('restartBtn');
+const playWithFriendBtn = document.getElementById('playWithFriendBtn');
+const playWithSystemBtn = document.getElementById('playWithSystemBtn');
+
+
+// Event listeners
+playWithFriendBtn.addEventListener('click', () => startGame(false));
+playWithSystemBtn.addEventListener('click', () => startGame(true));
+restartBtn.addEventListener('click', restartGame);
+
+
+// Start game function
+function startGame(withSystem) {
+    isPlayingWithSystem = withSystem;
+    gameSelection.style.display = 'none';
+    gameContainer.style.display = 'block';
+    updatePlayerTurnInfo();
+}
+
+// Update player turn information
+function updatePlayerTurnInfo() {
+    playerTurnInfo.textContent = `Player ${currentPlayer}'s turn (${playerColors[currentPlayer]})`;
+    playerTurnInfo.style.backgroundColor = currentPlayer === 1 ? 'red' : 'blue';
+}
+
 // Function to handle circle click events
 function handleCircleClick(event) {
     const circle = event.target;
@@ -49,7 +80,9 @@ function handleCircleClick(event) {
         if (circle.style.backgroundColor === 'white' || circle.style.backgroundColor === '') {
             circle.style.backgroundColor = playerColors[currentPlayer];
             playerMoves[currentPlayer]++;
-            switchPlayer();
+            if (!checkWinner()) {
+                switchPlayer();
+            }
         } else {
             alert('Circle already filled! Choose another circle.');
         }
@@ -105,17 +138,165 @@ function moveCircle(targetCircle) {
         selectedCircle.style.backgroundColor = 'white';
         deselectCircle(selectedCircle);
         selectedCircle = null;
-        switchPlayer();
+        setTimeout(() => {
+            if (!checkWinner()) {
+                switchPlayer();
+            }
+        }, 500); // Ensure the move is visually completed before checking the winner
     }
 }
 
 // Function to switch the current player
 function switchPlayer() {
     currentPlayer = currentPlayer === 1 ? 2 : 1;
+    updatePlayerTurnInfo();
+
+    if (isPlayingWithSystem && currentPlayer === 2) {
+        setTimeout(systemMove, 1000); // System makes a move after a short delay
+    }
+}
+
+// System move logic
+function systemMove() {
+    let moved = false;
+
+    // Check if the system needs to move circles
+    if (playerMoves[2] >= maxMoves) {
+        // System moves circles
+        moved = moveSystemCircles();
+    } else {
+        // Check if the system can win in the next move
+        moved = checkSystemWin();
+        
+        // If not, check if the system needs to block the opponent from winning
+        if (!moved) {
+            moved = checkOpponentWin();
+        }
+        
+        // If neither winning nor blocking is necessary, make a strategic move
+        if (!moved) {
+            makeStrategicMove();
+        }
+    }
+
+    // Switch to the next player after the system's move
+    setTimeout(() => {
+        if (!checkWinner()) {
+            switchPlayer();
+        }
+    }, 500); // Ensure the move is visually completed before checking the winner
+}
+
+// Function to check if the system can win in the next move
+function checkSystemWin() {
+    for (const combination of winningCombinations) {
+        let emptyPosition = null;
+        let systemCount = 0;
+        let opponentCount = 0;
+        for (const pos of combination) {
+            const circle = document.querySelector(`.circle[data-pos="${pos}"]`);
+            const color = circle.style.backgroundColor;
+            if (color === playerColors[2]) {
+                systemCount++;
+            } else if (color === 'white' || color === '') {
+                emptyPosition = circle;
+            } else {
+                opponentCount++;
+            }
+        }
+        if (systemCount === 2 && opponentCount === 0 && emptyPosition !== null) {
+            emptyPosition.style.backgroundColor = playerColors[2];
+            playerMoves[2]++;
+            return true;
+        }
+    }
+    return false;
+}
+
+// Function to check if the opponent can win in the next move and block them
+function checkOpponentWin() {
+    for (const combination of winningCombinations) {
+        let emptyPosition = null;
+        let systemCount = 0;
+        let opponentCount = 0;
+        for (const pos of combination) {
+            const circle = document.querySelector(`.circle[data-pos="${pos}"]`);
+            const color = circle.style.backgroundColor;
+            if (color === playerColors[1]) {
+                opponentCount++;
+            } else if (color === 'white' || color === '') {
+                emptyPosition = circle;
+            } else {
+                systemCount++;
+            }
+        }
+        if (opponentCount === 2 && systemCount === 0 && emptyPosition !== null) {
+            emptyPosition.style.backgroundColor = playerColors[2];
+            playerMoves[2]++;
+            return true;
+        }
+    }
+    return false;
+}
+
+// Function to make a strategic move
+function makeStrategicMove() {
+    // Try to place in the center if available
+    const centerCircle = document.querySelector('.circle[data-pos="center"]');
+    if (centerCircle.style.backgroundColor === 'white' || centerCircle.style.backgroundColor === '') {
+        centerCircle.style.backgroundColor = playerColors[2];
+        playerMoves[2]++;
+        return true;
+    }
+
+    // Try to place in corners if available
+    const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+    for (const corner of corners) {
+        const cornerCircle = document.querySelector(`.circle[data-pos="${corner}"]`);
+        if (cornerCircle.style.backgroundColor === 'white' || cornerCircle.style.backgroundColor === '') {
+            cornerCircle.style.backgroundColor = playerColors[2];
+            playerMoves[2]++;
+            return true;
+        }
+    }
+
+    // Place in any random empty circle as a last resort
+    makeRandomMove();
+}
+
+// Function to make a random move if no strategic move is possible
+function makeRandomMove() {
+    let emptyCircles = Array.from(circles).filter(circle => circle.style.backgroundColor === 'white' || circle.style.backgroundColor === '');
+    if (emptyCircles.length > 0) {
+        const randomEmptyCircle = emptyCircles[Math.floor(Math.random() * emptyCircles.length)];
+        randomEmptyCircle.style.backgroundColor = playerColors[2];
+        playerMoves[2]++;
+        return true;
+    }
+    return false;
+}
+
+// Function to move system circles
+function moveSystemCircles() {
+    const systemCircles = Array.from(circles).filter(circle => circle.style.backgroundColor === playerColors[2]);
+    for (const circle of systemCircles) {
+        const nearestCircles = nearestPositions[circle.dataset.pos];
+        for (const pos of nearestCircles) {
+            const targetCircle = document.querySelector(`.circle[data-pos="${pos}"]`);
+            if ((targetCircle.style.backgroundColor === 'white' || targetCircle.style.backgroundColor === '') && targetCircle !== systemPreviousMove) {
+                targetCircle.style.backgroundColor = playerColors[2];
+                systemPreviousMove = circle;
+                circle.style.backgroundColor = 'white';
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 // Function to restart the game
 function restartGame() {
+   // alert('Do you want to Restart Game');
     playerMoves[1] = 0;
     playerMoves[2] = 0;
     circles.forEach(circle => {
@@ -124,7 +305,8 @@ function restartGame() {
     });
     currentPlayer = 1;
     selectedCircle = null;
-    alert("Restarted! Start filling circles again.");
+    systemPreviousMove = null;
+    updatePlayerTurnInfo();
 }
 
 // Function to check for a winner
@@ -138,23 +320,18 @@ function checkWinner() {
     });
 
     if (winner) {
-        alert(`Player ${currentPlayer === 1 ? 2 : 1} wins!`);
+        const winningPlayer = currentPlayer === 1 ? 1 : 2; // Correctly identify the winning player
+        setTimeout(() => { 
+            alert(`Player ${winningPlayer} wins! (${playerColors[winningPlayer]})`);
+        }, 100);
         restartGame();
-    } else {
-        alert("No winner yet! Keep playing.");
+        return true;
     }
+    return false;
 }
-
-// Add event listener to check winner button
-document.getElementById('checkWinnerBtn').addEventListener('click', checkWinner);
-
-// Add event listener to restart button
-document.getElementById('restartBtn').addEventListener('click', restartGame);
 
 // Listener function for moving circle
 function moveCircleListener(event) {
     const targetCircle = event.target;
     moveCircle(targetCircle);
 }
-
-
