@@ -1,4 +1,4 @@
-#Dot Connector
+#Circle Connector
 
 ###Overview####
 <br>
