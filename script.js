@@ -6,6 +6,8 @@ const maxMoves = 3;
 let selectedCircle = null; // Keep track of the selected circle for moving
 let isPlayingWithSystem = false; // Flag to check if playing with the system
 let systemPreviousMove = null; // Track the previous move of the system player
+let player1Name = 'Player 1'; // Player 1 name
+let player2Name = 'Player 2'; // Player 2 name or system name
 
 // Select all circle elements
 const circles = document.querySelectorAll('.circle');
@@ -48,16 +50,21 @@ const restartBtn = document.getElementById('restartBtn');
 const playWithFriendBtn = document.getElementById('playWithFriendBtn');
 const playWithSystemBtn = document.getElementById('playWithSystemBtn');
 
-
 // Event listeners
 playWithFriendBtn.addEventListener('click', () => startGame(false));
 playWithSystemBtn.addEventListener('click', () => startGame(true));
 restartBtn.addEventListener('click', restartGame);
 
-
 // Start game function
 function startGame(withSystem) {
     isPlayingWithSystem = withSystem;
+    if (isPlayingWithSystem) {
+        player1Name = prompt("Enter your name (Red):", "Player 1") || "Player 1";
+        player2Name = 'Sagar';
+    } else {
+        player1Name = prompt("Enter name for Player 1 (Red):", "Player 1") || "Player 1";
+        player2Name = prompt("Enter name for Player 2 (Blue):", "Player 2") || "Player 2";
+    }
     gameSelection.style.display = 'none';
     gameContainer.style.display = 'block';
     updatePlayerTurnInfo();
@@ -65,7 +72,8 @@ function startGame(withSystem) {
 
 // Update player turn information
 function updatePlayerTurnInfo() {
-    playerTurnInfo.textContent = `Player ${currentPlayer}'s turn (${playerColors[currentPlayer]})`;
+    const currentPlayerName = currentPlayer === 1 ? player1Name : player2Name;
+    playerTurnInfo.textContent = `${currentPlayerName}'s turn (${playerColors[currentPlayer]})`;
     playerTurnInfo.style.backgroundColor = currentPlayer === 1 ? 'red' : 'blue';
 }
 
@@ -296,7 +304,6 @@ function moveSystemCircles() {
 
 // Function to restart the game
 function restartGame() {
-   // alert('Do you want to Restart Game');
     playerMoves[1] = 0;
     playerMoves[2] = 0;
     circles.forEach(circle => {
@@ -320,9 +327,9 @@ function checkWinner() {
     });
 
     if (winner) {
-        const winningPlayer = currentPlayer === 1 ? 1 : 2; // Correctly identify the winning player
+        const winningPlayerName = currentPlayer === 1 ? player1Name : player2Name; // Correctly identify the winning player
         setTimeout(() => { 
-            alert(`Player ${winningPlayer} wins! (${playerColors[winningPlayer]})`);
+            alert(`${winningPlayerName} wins! (${playerColors[currentPlayer]})`);
         }, 100);
         restartGame();
         return true;
